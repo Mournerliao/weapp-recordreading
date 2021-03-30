@@ -33,8 +33,10 @@ Page({
     recordView: ['当日记录', '全部记录'],
     show: false,
 
-    ifRecord: false,
-    currentRecords: []
+    ifCurrentRecord: true,
+    ifAllRecord: true,
+    currentRecords: [],
+    allRecords: []
   },
   onShow() {
     if (typeof this.getTabBar === 'function' &&
@@ -57,7 +59,6 @@ Page({
   scrollCalendar(year, month, date) {
     let currentDate = year + '-' + month + '-' + date;
     this.getCurrentRecords(currentDate);
-    console.log(year, month, date)
     let that = this,
       scrollLeft = 0;
     wx.getSystemInfo({
@@ -218,7 +219,7 @@ Page({
     });
   },
   getCurrentRecords(date) {
-    console.log(date)
+    console.log(date);
     let that = this;
     wx.request({
       url: 'https://www.xiaoqw.online/recordreading/sever/getCurrentRecords.php',
@@ -234,18 +235,49 @@ Page({
       success: res => {
         console.log(res.data);
 
-        if(res.data) {
+        if(res.data.length != 0) {
           that.setData({
             currentRecords: res.data,
-            ifRecord: true
+            ifCurrentRecord: true
           })
         } else {
           console.log("暂无记录");
           that.setData({
-            ifRecord: false
+            ifCurrentRecord: false
           })
         }
       }
     })
   },
+  getAllRecords(event) {
+    let that = this;
+    if(event.detail.name == "all" && this.data.allRecords.length == 0) {
+      wx.request({
+        url: 'https://www.xiaoqw.online/recordreading/sever/getAllRecords.php',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          userID: wx.getStorageSync('userID'),
+          isbn: wx.getStorageSync('isbn')
+        },
+        success: res => {
+          console.log(res.data);
+  
+          if(res.data.length != 0) {
+            that.setData({
+              allRecords: res.data,
+              ifAllRecord: true
+            })
+          } else {
+            console.log("暂无记录");
+            that.setData({
+              ifAllRecord: false
+            })
+          }
+        }
+      })
+    }
+  }
 })

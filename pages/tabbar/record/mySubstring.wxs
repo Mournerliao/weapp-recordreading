@@ -1,0 +1,6 @@
+function mySubstring(str,position){
+  return str.substring(position);
+}
+module.exports = {
+  mySubstring: mySubstring
+}

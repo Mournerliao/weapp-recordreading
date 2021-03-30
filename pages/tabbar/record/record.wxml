@@ -24,10 +24,11 @@
 </view>
 
 <view class="myrecord">
-  <van-tabs custom-class="recordtitle" tab-class="title" active="{{ active }}" color="#71BEAE"
-    title-active-color="#71BEAE" bind:change="onChange">
-    <van-tab title="当日记录">
-      <view wx:if="{{!ifRecord}}">
+  <wxs src="mySubstring.wxs" module="tool"></wxs>
+  <van-tabs tab-class="title" active="current" color="#71BEAE"
+    title-active-color="#71BEAE" bind:click="getAllRecords">
+    <van-tab title="当日记录" name="current">
+      <view wx:if="{{!ifCurrentRecord}}">
         <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
         <view class="norecordtext">暂无记录</view>
       </view>
@@ -35,17 +36,27 @@
         <view wx:for="{{currentRecords}}" wx:key="index" class="record">
           <view class="titleline">
             <text class="lineheight booktitle">{{item.title}}</text>
-            <text class="lineheight clocktime">{{item.date}}</text>
+            <text class="lineheight clocktime">{{tool.mySubstring(item.date,11)}}</text>
           </view>
           <view class="recordpages">阅读页数：{{item.readPages}}</view>
           <view class="recordnote">{{item.note}}</view>
         </view>
       </view>
     </van-tab>
-    <van-tab title="全部记录">
-      <view wx:if="{{!ifRecord}}">
+    <van-tab title="全部记录" name="all">
+      <view wx:if="{{!ifAllRecord}}">
         <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
         <view class="norecordtext">暂无记录</view>
+      </view>
+      <view wx:else>
+        <view wx:for="{{allRecords}}" wx:key="index" class="record">
+          <view class="titleline">
+            <text class="lineheight booktitle">{{item.title}}</text>
+            <text class="lineheight clocktime">{{tool.mySubstring(item.date,11)}}</text>
+          </view>
+          <view class="recordpages">阅读页数：{{item.readPages}}</view>
+          <view class="recordnote">{{item.note}}</view>
+        </view>
       </view>
     </van-tab>
   </van-tabs>

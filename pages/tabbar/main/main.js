@@ -1,10 +1,12 @@
 //获取应用实例
-const app = getApp()
+const app = getApp();
+let util = require('../../../utils/util.js');
 
 Page({
   data: {
     screenWidth: app.globalData.screenWidth,
     navHeight: app.globalData.navBarHeight,
+    date: '',
     hasUserInfo: false,
     topheight: 240,
     loading: true,
@@ -94,7 +96,15 @@ Page({
       }
     })
   },
+  getTime() {
+    let date = util.formatDate(new Date());
+    this.setData({
+      date: date,
+    });
+  },
   getInfo() {
+    this.getTime();
+
     let that = this;
     this.setData({
       hasUserInfo: wx.getStorageSync('hasUserInfo')
@@ -108,7 +118,8 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
-          userID: userID
+          userID: userID,
+          date: this.data.date
         },
         success: function (res) {
           console.log(res.data);

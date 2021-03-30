@@ -1,5 +1,5 @@
 page {
-  background-color: #f0f1f5;
+  background-color: #ffffff;
 }
 
 .navbarline {
@@ -7,7 +7,7 @@ page {
   line-height: 100rpx;
   display: flex;
   align-items: center;
-  background-color: #f0f1f5;
+  background-color: #ffffff;
 }
 .navbartitle {
   margin-left: 20px;
@@ -20,7 +20,7 @@ page {
   margin-top: 30rpx;
   margin-left: 80rpx;
   padding-right: 40px;
-  background-color: #ffffff;
+  background-color: #f0f1f5;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   color: #303133;
@@ -87,8 +87,9 @@ page {
              -12rpx -12rpx 24rpx #ffffff; */
 }
 .noselect {
-  background: #ffffff;
+  background: #f0f1f5;
   color: #606266;
+  border-radius: 15px;
 }
 .date {
   font-size: 24px;
@@ -101,29 +102,29 @@ page {
 
 .myrecord {
   height: 70vh;
-  margin-top: 30px;
+  margin-top: 10px;
   padding-top: 5px;
-  border-radius: 20px 20px 0 0;
   background-color: #FFFFFF;
   text-align: center;
   border: none;
-}
-.recordtitle {
-  margin-left: 20px !important;
-  margin-right: 20px !important;
-  border-radius: 20px 20px 0 0 !important;
 }
 .title {
   font-weight: 600 !important;
 }
 
 .record {
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px 15px 10px 15px;
   text-align: justify;
+  background-color: #f7f7f7;
+  border-radius: 20px;
+}
+.record:first-child {
+  margin-top: 20px;
 }
 .titleline {
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,7 +141,7 @@ page {
 .clocktime {
   display: block;
   position: absolute;
-  right: 0;
+  right: 30px;
   color: #909399;
 }
 .recordpages {
@@ -148,7 +149,7 @@ page {
   color: #606266;
 }
 .recordnote {
-  margin-top: 5px;
+  margin-top: 10px;
   color: #606266;
 }
 
