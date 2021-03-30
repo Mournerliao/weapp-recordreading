@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-loading": "@vant/weapp/loading/index"
+  },
+  "navigationStyle": "custom"
+}

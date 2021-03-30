@@ -1,0 +1,52 @@
+<view class="navbarline" style="padding-top: {{navHeight+10}}px;">
+  <view class="navbartitle">{{monthText[month-1]}}，{{year}}</view>
+</view>
+
+<view class="mycalendar">
+  <!--显示当前年月日-->
+  <!-- <view class="calendar-title">
+      <view class="item ctrl" bindtap="lastMonth">{{lastMonth}}</view>
+      <view class="item title">{{title}}</view>
+      <view class="item ctrl" bindtap="nextMonth">{{nextMonth}}</view>
+      <view class="item ctrl today" bindtap="today">今天</view>
+    </view> -->
+
+  <!-- 滚动展示 -->
+  <scroll-view scroll-left="{{scrollLeft}}" scroll-x scroll-with-animation class="calendar-x">
+    <view class="grid" wx:for="{{thisMonthDays}}" wx:key="index">
+      <view class="insidegrid {{ select === year+'-'+item.monthFormat+'-'+item.dateFormat ? 'select' : 'noselect' }}"
+        bindtap="select" data-date="{{item.date}}">
+        <view class="date">{{item.date}}</view>
+        <view class="weektext">{{item.week}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="myrecord">
+  <van-tabs custom-class="recordtitle" tab-class="title" active="{{ active }}" color="#71BEAE"
+    title-active-color="#71BEAE" bind:change="onChange">
+    <van-tab title="当日记录">
+      <view wx:if="{{!ifRecord}}">
+        <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
+        <view class="norecordtext">暂无记录</view>
+      </view>
+      <view wx:else>
+        <view wx:for="{{currentRecords}}" wx:key="index" class="record">
+          <view class="titleline">
+            <text class="lineheight booktitle">{{item.title}}</text>
+            <text class="lineheight clocktime">{{item.date}}</text>
+          </view>
+          <view class="recordpages">阅读页数：{{item.readPages}}</view>
+          <view class="recordnote">{{item.note}}</view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="全部记录">
+      <view wx:if="{{!ifRecord}}">
+        <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
+        <view class="norecordtext">暂无记录</view>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

@@ -1,0 +1,280 @@
+page {
+  background-color: #FFFFFF;
+}
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backbutton {
+  position: fixed !important;
+  border-radius: 50% !important;
+  margin-left: 40rpx !important;
+  color: #000000 !important;
+  background-color: rgba(255,255,255,.6) !important;
+  border: 1px solid rgba(0, 0, 0, .1) !important;
+}
+
+.top {
+  width: 100%;
+  height: 180px;
+  position:absolute;
+  top: 0;
+  z-index: -1;
+}
+.topcover {
+  width: 100%;
+  -webkit-filter:blur(5px);
+  filter:blur(5px);
+}
+
+.allinfo {
+  margin-top: 160px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  background-color: #FFFFFF;
+  border-radius: 20px 20px 0 0;
+}
+.bookcover {
+  display: flex;
+  justify-content: center;
+}
+.coverimg {
+  margin-top: -60px;
+  margin-left: 15px;
+  width: 125px;  
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.title {
+  margin-left: 14px;
+  margin-right: 15px;
+  /* display: flex;
+  justify-content: center; */
+  color: #303133;
+  font-size: 18px;
+  font-weight: 700;
+}
+.author {
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-right: 15px;
+  font-size: 15px;
+  color: #909399;
+  word-wrap: break-word;
+  /* display: flex;
+  justify-content: center; */
+}
+.pages {
+  margin-top: 10px !important;
+  margin-left: 16px !important;
+  /* color: #909399 !important; */
+}
+.rating {
+  margin-top: 10px;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+}
+.ratingscore {
+  margin-left: 10px;
+  color: #ffd21e;
+  font-weight: bold;
+}
+
+.introduce {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.introtitle {
+  font-weight: 600;
+}
+.intro {
+  margin-top: 10px;
+  text-align: justify;
+  text-align-last: auto;
+  line-height: 22px;
+  font-size: 15px;
+  color: #909399;
+}
+/* .introhide {
+  规定子元素的排列方向
+  -webkit-box-orient: vertical;
+  限制文本显示的行数 
+  -webkit-line-clamp: 3;
+  实现多余的文字隐藏并用省略号来代表被隐藏的文字 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+} */
+
+.twobutton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.collect {
+  width: 240rpx !important;
+  margin-right: 15px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  color: #909399 !important;
+}
+.select {
+  width: 300rpx !important;
+  margin-left: 15px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 5px 20px rgba(255, 188, 3, .3) !important;
+}
+
+.vanpopup {
+  background-color: #ffffff !important;
+}
+.popup {
+  text-align: center;
+}
+.popuptitle {
+  line-height: 120rpx;
+  color: #606266;
+}
+.explain {
+  margin-top: -20px;
+  line-height: 80rpx;
+  color: #909399;
+  font-size: 14px;
+}
+.confirm {
+  width: 90% !important;
+  height: 60px !important;
+  font-size: 18px !important;
+}
+.cancel {
+  width: 90% !important;
+  height: 60px !important;
+  margin-top: 10px;
+  font-size: 18px !important;
+}
+
+.details {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.detailstitle {
+  font-weight: 600;
+}
+.alldetails {
+  margin-top: 10px;
+  line-height: 30px;
+  font-size: 15px;
+  color: #909399;
+  background-color:rgba(113,190,174,0.15);
+  padding: 10px 20px 10px 20px;
+  border-radius: 12px;
+}
+
+.authorinfo {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.authortitle {
+  font-weight: 600;
+}
+.authorintro {
+  margin-top: 10px;
+  text-align: justify;
+  text-align-last: auto;
+  line-height: 22px;
+  font-size: 15px;
+  color: #909399;
+}
+
+/* .content {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.contenttitle {
+  font-weight: 600;
+}
+.contentinfo {
+  margin-top: 10px;
+  text-align: justify;
+  text-align-last: auto;
+  line-height: 24px;
+  color: #909399;
+} */
+
+.clockin {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f1f5;
+  border-radius: 20px 20px 0 0;
+  font-weight: 600;
+  /* box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06); */
+}
+.clockinbutton {
+  width: 450rpx !important;
+  border-radius: 10px !important;
+}
+
+.blank {
+  height: 70px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page {
+    background-color: #000000;
+  }
+  .backbutton {
+    color: #ffffff !important;
+    background-color: rgba(0,0,0,.15) !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+  }
+  .allinfo {
+    background-color: #000000;
+  }
+  .title {
+    color: #ffffff;
+  }
+  .author {
+    color: #5d5d5d;
+  }
+  .intro {
+    color: #5d5d5d;
+  }
+  .collect {
+    color: #ffffff !important;
+    background-color: #191919 !important;
+    border-color: #191919 !important;
+  }
+  .vanpopup {
+    background-color: #191919 !important;
+  }
+  .popuptitle {
+    color: #ffffff;
+  }
+  .explain {
+    color: #ffffff;
+  }
+  .authorintro {
+    color: #5d5d5d;
+  }
+  /* DarkMode 下的样式 end */
+}

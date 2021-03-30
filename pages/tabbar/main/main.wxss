@@ -1,0 +1,295 @@
+page {
+  background: #ffffff;
+}
+
+.mynavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.navbarline {
+  height: 46px;
+  line-height: 46px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  margin-left: 20px;
+}
+
+.navbartitle {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #303133;
+}
+
+.head_search {
+  position: relative;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+
+.text_search {
+  box-sizing: border-box;
+  padding-left: 42rpx;
+  width: 100%;
+  height: 80rpx;
+  font-size: 13px;
+  color: grey;
+  background-color: #f0f1f5;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.icon_search {
+  position: absolute;
+  right: 42rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f0f1f5;
+}
+
+.loading {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bankview {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.bankpic {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.banktext {
+  margin-top: 8%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #303133;
+}
+
+.bankbutton {
+  width: 450rpx !important;
+  margin-top: 8% !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
+}
+
+.top {
+  margin-top: 12%;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+  background-color: #f7f7f7;
+  border-radius: 20rpx;
+}
+
+.bookcover {
+  height: 240rpx;
+  margin-top: -40rpx;
+  margin-left: 40rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px -6px 16px -8px rgba(0, 0, 0, 0.08),
+    0px -9px 28px 0px rgba(0, 0, 0, 0.05),
+    0px -12px 48px 16px rgba(0, 0, 0, 0.03);
+}
+
+.topright {
+  width: 100%;
+  padding: 30rpx 20rpx 40rpx 40rpx;
+  text-align: center;
+}
+
+.booktitle {
+  color: #71BEAE;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bookauthor {
+  margin-top: 24rpx;
+  font-size: 15px;
+  color: #909399;
+}
+
+.nowreading {
+  margin-top: 24rpx;
+  color: #303133;
+}
+
+/* .circle {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.van-circle {
+  border-radius: 50%;
+} */
+
+.progresscontainer {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressbox {
+  width: 600rpx;
+  height: 600rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressbg {
+  position: absolute;
+  width: 600rpx;
+  height: 600rpx;
+}
+
+.progresscanvas {
+  width: 600rpx;
+  height: 600rpx;
+}
+
+.progresstext {
+  position: absolute;
+  text-align: center;
+}
+
+.readpages {
+  color: #71BEAE;
+  font-size: 60rpx;
+  font-weight: 600;
+}
+
+.allpages {
+  color: #303133;
+}
+
+.circletext {
+  color: #909399;
+}
+
+.readpk {
+  margin-top: 8%;
+  margin-left: 60rpx;
+  color: #303133;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.ornament {
+  margin-top: 5px;
+  margin-left: 60rpx;
+  width: 40px;
+  height: 3px;
+  background-color: #F8C36A;
+  border-radius: 6rpx;
+}
+
+.myprogress {
+  margin-top: 45rpx;
+  padding-left: 80rpx;
+  display: flex;
+}
+
+.cmpprogress {
+  margin-top: 20rpx;
+  padding-right: 80rpx;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.avatar {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 10rpx;
+  color: #606266;
+  font-size: 14px;
+}
+
+.progress {
+  width: 400rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+
+.blank {
+  height: 100px;
+  padding-bottom: calc(50px + env(safe-area-inset-bottom));
+}
+
+@media (prefers-color-scheme: dark) {
+
+  /* DarkMode 下的样式 start */
+  page {
+    background: #000000;
+  }
+
+  .navbar {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+  }
+
+  .navtitle {
+    color: #ffffff !important;
+  }
+
+  .text_search {
+    color: #5d5d5d;
+    background-color: #191919;
+  }
+
+  .top {
+    background-color: #191919;
+  }
+
+  .bookcover {
+    box-shadow: none;
+  }
+
+  .van-circle {
+    box-shadow: none;
+  }
+
+  .allpages {
+    color: #ffffff;
+  }
+
+  .circletext {
+    color: #ffffff;
+  }
+
+  .clockin {
+    box-shadow: none !important;
+  }
+
+  /* DarkMode 下的样式 end */
+}

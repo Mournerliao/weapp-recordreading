@@ -1,0 +1,53 @@
+<van-nav-bar
+  custom-class="navbar"
+  title-class="navtitle"
+  title="更多"
+  fixed
+  placeholder="true"
+  bind:click-left="onClickLeft"
+  border="{{false}}"
+>
+  <van-icon name="arrow-left" slot="left" size="20px" />
+</van-nav-bar>
+
+<view>
+  <van-cell-group custom-class="cellgroup" border="{{false}}">
+    <van-cell custom-class="cell topradius" title="绑定邮箱" size="large" is-link bind:click="toBindEmail" border="{{false}}" center />
+    <van-cell custom-class="cell" title="反馈与建议" size="large" is-link open-tpye="contact" bind:click="showPopup1" border="{{false}}" center />
+    <van-cell custom-class="cell bottomradius" title="退出登录" size="large" is-link bind:click="showPopup2" border="{{false}}" center />
+  </van-cell-group>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show1 }}"
+    round
+    position="bottom"
+    custom-style="height: 250px"
+    bind:close="onClose1"
+  >
+    <view class="popup">
+      <text class="popuptitle">即将前往客服页面</text>
+      <van-button custom-class="confirm" color="#71BEAE" round open-type="contact" block>确定</van-button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose1">取消</van-button>
+    </view>
+  </van-popup>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show2 }}"
+    round
+    position="bottom"
+    custom-style="height: 250px"
+    bind:close="onClose2"
+  >
+    <view class="popup">
+      <text class="popuptitle">是否退出登录？</text>
+      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="quit">确定</van-button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose2">取消</van-button>
+    </view>
+  </van-popup>
+
+  <view class="more">
+    <image class="morepic" src="{{ currentTheme == 'light' ? imgSrc : 0 }}" mode="widthFix"></image>
+  </view>
+</view>

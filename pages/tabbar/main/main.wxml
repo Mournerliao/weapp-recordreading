@@ -1,0 +1,98 @@
+<cover-view class="mynavbar" style="padding-top: {{navHeight}}px;">
+  <cover-view class="navbarline">
+    <cover-image class="logo" src="../../../static/img/logo.png" mode="widthFix"></cover-image>
+    <cover-view class="navbartitle">你阅读了吗</cover-view>
+  </cover-view>
+</cover-view>
+
+<view class="head_search" bindtap="toSearch" style="margin-top: {{navHeight+56}}px;">
+  <view class="text_search colorGray">查找或添加书籍</view>
+  <icon class="icon_search" type='search' size="15"></icon>
+</view>
+
+<view wx:if="{{!hasUserInfo}}">
+  <view class="bankview">
+    <image class="bankpic" src="../../../static/img/login.png" mode="widthFix"></image>
+    <view class="banktext">开始您的阅读之旅</view>
+    <van-button custom-class="bankbutton" color="#71BEAE" open-type="getUserInfo" bind:getuserinfo="login"
+      loading="{{ loginLoading }}" loading-text="登录中..." type="primary">
+      🍟 微信登录
+    </van-button>
+  </view>
+</view>
+
+<view wx:if="{{hasUserInfo && loading}}" class="loading">
+  <van-loading size="35" color="#71beae" />
+</view>
+
+<view wx:if="{{hasUserInfo && !loading && !ifReading}}">
+  <view class="bankview">
+    <image class="bankpic" src="../../../static/img/noreading.png" mode="widthFix"></image>
+    <view class="banktext">阅读之旅准备就绪</view>
+    <van-button custom-class="bankbutton" color="#71BEAE" bind:click="toSearch" type="primary">
+      🌈 设置打卡书籍
+    </van-button>
+  </view>
+</view>
+
+<view wx:if="{{hasUserInfo && !loading && ifReading}}">
+  <view id="top" class="top" bindtap="toBookInfo">
+    <van-row>
+      <van-col span="11">
+        <image class="bookcover" src="{{cover_url}}" mode="heightFix"></image>
+      </van-col>
+
+      <van-col span="10">
+        <view class="topright">
+          <view class="booktitle">{{title}}</view>
+          <view class="bookauthor">{{author}}</view>
+          <view class="nowreading">
+            <van-tag color="#F8C36A" size="large">已阅读：{{days}}天</van-tag>
+          </view>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+
+  <!-- <view class="circle">
+    <van-circle size="{{screenWidth*260}}" color="#71BEAE" layer-color="#f0f1f5" stroke-width="40"
+      value="{{ percentage }}">
+      <text class="readpages">{{ readpages }}</text><text class="allpages">/{{ allpages }}</text>
+      <view class="circletext">当前阅读进度</view>
+    </van-circle>
+  </view> -->
+
+  <view class="progresscontainer">
+    <view class="progressbox">
+      <!-- 绘制圆环背景 -->
+      <canvas class="progressbg" canvas-id="canvasProgressbg" />
+      <!-- 绘制加载中圆弧 -->
+      <canvas class="progresscanvas" canvas-id="canvasProgress" />
+      <!-- 绘制圆弧中心提示文字 -->
+      <view class="progresstext">
+        <text class="readpages">{{ readpages }}</text><text class="allpages">/{{ allpages }}</text>
+        <view class="circletext">当前阅读进度</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="readpk">阅读PK</view>
+  <view class="ornament"></view>
+  <!-- <view>
+    <view class="myprogress">
+      <view class="info">
+        <image class="avatar" src="{{myAvatar}}"></image>
+        <view class="name">{{myName}}</view>
+      </view>
+    </view>
+
+    <view class="cmpprogress">
+      <view class="info">
+        <image class="avatar" src="{{cmpAvatar}}"></image>
+        <view class="name">{{cmpName}}</view>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="blank"></view>
+</view>

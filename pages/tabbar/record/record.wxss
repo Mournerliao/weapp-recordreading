@@ -1,0 +1,179 @@
+page {
+  background-color: #f0f1f5;
+}
+
+.navbarline {
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  align-items: center;
+  background-color: #f0f1f5;
+}
+.navbartitle {
+  margin-left: 20px;
+  font-size: 54rpx;
+  font-weight: 800;
+  color: #303133;
+}
+
+.mycalendar {
+  margin-top: 30rpx;
+  margin-left: 80rpx;
+  padding-right: 40px;
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #303133;
+}
+/* 标题 */
+.calendar-title {
+  line-height: 70rpx;
+  font-size: 30rpx;
+  text-align: left;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+.ctrl {
+  background: #ffffff;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  border-radius: 50%;
+}
+.item {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 60rpx;
+}
+.title {
+  min-width: 300rpx;
+  text-align: center;
+}
+.today {
+  float: right;
+  margin-top: 13rpx;
+  font-size: 14px;
+}
+/* 滚动展示 */
+.calendar-x {
+  margin-left: 20px;
+  height: 100px;
+  white-space: nowrap;
+}
+.grid {
+  display: inline-block;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.grid:first-child {
+  margin-left: 0;
+}
+.insidegrid {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.select {
+  background: #71BEAE;
+  color: #ffffff;
+  border-radius: 15px;
+  /* box-shadow:  12rpx 12rpx 24rpx #d9d9d9,
+             -12rpx -12rpx 24rpx #ffffff; */
+}
+.noselect {
+  background: #ffffff;
+  color: #606266;
+}
+.date {
+  font-size: 24px;
+  font-weight: 600;
+}
+.weektext {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.myrecord {
+  height: 70vh;
+  margin-top: 30px;
+  padding-top: 5px;
+  border-radius: 20px 20px 0 0;
+  background-color: #FFFFFF;
+  text-align: center;
+  border: none;
+}
+.recordtitle {
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  border-radius: 20px 20px 0 0 !important;
+}
+.title {
+  font-weight: 600 !important;
+}
+
+.record {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
+.titleline {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.lineheight {
+  height: 30px;
+  line-height: 30px;
+}
+.booktitle {
+  font-size: 17px;
+  color: #303133;
+  font-weight: 600;
+}
+.clocktime {
+  display: block;
+  position: absolute;
+  right: 0;
+  color: #909399;
+}
+.recordpages {
+  margin-top: 5px;
+  color: #606266;
+}
+.recordnote {
+  margin-top: 5px;
+  color: #606266;
+}
+
+
+.norecord {
+  width: 60%;
+  margin-top: 20%;
+}
+.norecordtext {
+  margin-top: -15rpx;
+  color: #C0C4CC;
+  font-size: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page {
+    background-color: #000000;
+  }
+  .navbar {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+  }
+  .navtitle {
+    color: #ffffff !important;
+  }
+  /* DarkMode 下的样式 end */
+}

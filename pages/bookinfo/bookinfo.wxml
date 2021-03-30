@@ -1,0 +1,83 @@
+<view wx:if="{{loading}}" class="loading">
+  <van-loading size="35" color="#71beae" />
+</view>
+
+<view wx:else>
+  <van-button custom-class="backbutton"
+    custom-style="top: {{signaTop}}px; width: {{signaHeight}}px; height: {{signaHeight}}px;" icon="arrow-left"
+    bind:click="goBack">
+  </van-button>
+
+  <view class="top">
+    <image class="topcover" src="{{ cover_url }}" mode="widthFix"></image>
+  </view>
+
+  <view class="allinfo">
+    <van-row>
+      <van-col span="10">
+        <view class="bookcover">
+          <image class="coverimg" src="{{ cover_url }}" mode="widthFix"></image>
+        </view>
+      </van-col>
+      <van-col span="14">
+        <view class="title">{{ title }}</view>
+        <view class="author">{{ author }}</view>
+        <van-tag custom-class="pages" plain color="#71BEAE" size="medium">页数：{{ pages }}</van-tag>
+        <!-- <view class="pages">页数：{{ pages }}</view> -->
+        <view class="rating">
+          <van-rate readonly allow-half value="{{ rating }}" color="#ffd21e" void-color="#eee" void-icon="star" />
+          <text class="ratingscore">{{ rating }}</text>
+        </view>
+      </van-col>
+    </van-row>
+
+    <view class="introduce">
+      <text class="introtitle">Introduction</text>
+      <view class="intro" bindtap="ifIntroShow">{{ ifIntroShow ? book_intro : introShortText }}</view>
+    </view>
+
+    <view class="twobutton">
+      <van-button wx:if="{{!ifCollection}}" custom-class="collect" color="#eaeaea" bind:click="collect">加入收藏</van-button>
+      <van-button wx:if="{{ifCollection}}" custom-class="collect" color="#eaeaea" bind:click="cancelCollect">已收藏</van-button>
+      <van-button wx:if="{{isAble}}" custom-class="select" color="#ffbc03" bind:click="showPopup">设为打卡图书</van-button>
+      <van-button wx:else custom-class="select" color="#ffbc03" disabled>当前打卡图书</van-button>
+    </view>
+
+    <van-popup custom-class="vanpopup" show="{{ ifPopupShow }}" round position="bottom" custom-style="height: 250px"
+      bind:close="closePopup">
+      <view class="popup">
+        <text class="popuptitle">是否设为打卡图书</text>
+        <view class="explain">这将重置当前阅读进度</view>
+        <van-button custom-class="confirm" color="#71BEAE" round block bind:click="setNowReading"
+          loading="{{ setLoading }}">确定</van-button>
+        <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="closePopup">取消</van-button>
+      </view>
+    </van-popup>
+
+    <view class="details">
+      <text class="detailstitle">Details</text>
+      <view class="alldetails">
+        <view>作者：{{ author }}</view>
+        <view>书名：{{ title }}</view>
+        <view>出版社：{{ publish }}</view>
+        <view>ISBN：{{ isbn }}</view>
+        <view>页数：{{ pages }}</view>
+      </view>
+    </view>
+    <view class="authorinfo">
+      <text class="authortitle">Author</text>
+      <view class="authorintro" bindtap="ifAuthorShow">{{ ifAuthorShow ? author_intro : authorShortText }}</view>
+    </view>
+
+    <!-- <view class="content">
+      <text class="contenttitle">Content</text>
+      <view class="contentinfo">{{ catalog }}</view>
+    </view> -->
+  </view>
+
+  <view wx:if="{{!isAble}}" class="clockin" bindtap="toClockIn">
+    <van-button custom-class="clockinbutton" color="#71BEAE">📝 打卡</van-button>
+  </view>
+
+  <view class="blank"></view>
+</view>

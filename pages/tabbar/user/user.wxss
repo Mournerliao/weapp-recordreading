@@ -1,0 +1,155 @@
+page {
+  background-color: #ffffff;
+}
+
+/* .userinfo {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  background-color: #f0f1f5;
+  text-align: center;
+}
+.userinfo-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  font-size: 24px;
+  font-weight: bold;
+  color: #303133;
+  line-height: 45px;
+  height: 45px;
+}
+.userinfo-read {
+  color: #606266;
+  line-height: 25px;
+  height: 25px;
+} */
+
+.userinfo {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: #f0f1f5;
+}
+.userinfo-nickname {
+  margin-left: 12.5%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #303133;
+  line-height: 40px;
+  height: 40px;
+}
+.userinfo-id {
+  margin-left: 12.5%;
+  color: #606266;
+  line-height: 25px;
+  height: 25px;
+}
+.userinfo-avatar {
+  width: 65px;
+  height: 65px;
+  margin-right: 25%;
+  border-radius: 50%;
+  float: right;
+}
+
+.buttons {
+  padding-bottom: 40px;
+  background-color: #f0f1f5;
+  display: flex;
+  justify-content: center;
+}
+.mybutton {
+  width: 90rpx;
+  height: 90rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 40rpx;
+}
+.mybutton::after {
+  border: none;
+}
+
+/* .collect {
+  width: 100%;
+  padding-bottom: 40px;
+  background-color: #f0f1f5;
+}
+.collectbackground {
+  width: 88%;
+  display: table;
+  margin: 0 auto;
+  background-color: #F8C36A;
+  border-radius: 50px !important;
+}
+.collectitem {
+  height: 50px !important;
+  align-items: center !important;
+  background-color: #F8C36A !important;
+  border-radius: 50% !important;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+.collectitem-title {
+  color: #FFFFFF !important;
+  font-weight: 600;
+} */
+
+.haveread {
+  height: 60vh;
+  margin-top: -20px;
+  padding-top: 10px;
+  border-radius: 20px 20px 0 0;
+  background-color: #FFFFFF;
+  text-align: center;
+  border: none;
+}
+.havereadtitle {
+  margin-top: 15rpx;
+  font-size: 17px;
+  font-weight: 600;
+  color: #303133;
+}
+
+.noreaditem {
+  width: 100%;
+}
+
+.nobook {
+  width: 60%;
+  margin-top: 25%;
+}
+.nobooktext {
+  color: #C0C4CC;
+  font-size: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page {
+    background: #000000;
+  }
+  .userinfo {
+    background-color: #191919;
+  }
+  .collect {
+    background-color: #191919;
+  }
+  .haveread {
+    background-color: #000000;
+  }
+  .noreaditem {
+    background-color: #191919;
+  }
+  .noreaditem span {
+    color: #5d5d5d;
+  }
+  /* DarkMode 下的样式 end */
+}

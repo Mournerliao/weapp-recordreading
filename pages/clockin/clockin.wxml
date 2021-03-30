@@ -1,0 +1,41 @@
+<van-nav-bar custom-class="navbar" title-class="navtitle" title="打卡" fixed placeholder="true"
+  bind:click-left="onClickLeft" border="{{false}}">
+  <van-icon name="arrow-left" slot="left" size="20px" />
+</van-nav-bar>
+
+<view wx:if="{{loading}}" class="loading">
+  <van-loading size="35" color="#71beae" />
+</view>
+
+<view wx:else>
+  <view class="cellgroup">
+    <!-- <view class="cover topradius">
+      <image class="coverimg topradius" src="{{cover_url}}" mode="widthFix"></image>
+    </view> -->
+    <view class="cell topradius">
+      <view class="label">书籍名称</view>
+      <view class="input title">{{title}}</view>
+    </view>
+    <view class="cell">
+      <view class="label">已看到的页码</view>
+      <input class="input" value="{{ value }}" placeholder="请输入页码" type="number" confirm-type="next" bindblur="thisRead" />
+    </view>
+    <view class="cell">
+      <view class="label">打卡日期</view>
+      <view class="input">{{date}}</view>
+    </view>
+    <view class="readnote bottomradius">
+      <view class="notetitle">阅读笔记</view>
+      <view class="note">
+        <textarea class="input" value="{{ value }}" placeholder="请输入内容" auto-height confirm-type="done" bindblur="myNote" maxlength="-1"
+          disable-default-padding />
+        </view>
+    </view>
+  </view>
+
+  <view class="ornament"></view>
+
+  <view class="clockin">
+    <van-button custom-class="clockinbutton" color="#FFBC03" bind:click="submit">📌 确定</van-button>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<van-nav-bar custom-class="navbar" title-class="navtitle" title="搜索" fixed placeholder="true"
+  bind:click-left="onClickLeft" border="{{false}}">
+  <van-icon name="arrow-left" slot="left" size="20px" />
+</van-nav-bar>
+
+<view class="head_search">
+  <input class="text_search colorGray" confirm-type="search" placeholder="请输入书籍ISBN码" placeholder-class="colorGray"
+    bindfocus="scanFocus" bindblur="scanBlur" bindinput="bindInput" value="{{ inputValue }}" bindconfirm="onConfirm">
+  </input>
+  <!-- <van-button custom-class="button_search" color="#71BEAE" bind:click="onConfirm">搜索</van-button> -->
+  <icon class="icon_search" type='search' size="15" bindtap="onConfirm"></icon>
+  <van-toast id="van-toast" />
+</view>
+
+<view class="rectitle">相关推荐</view>
+
+<view wx:if="{{loading}}" class="loading">
+  <van-loading size="35" color="#71beae" />
+</view>
+
+<view wx:else>
+  <view class="recommendation">
+    <view class="recwaterfall">
+      <van-row>
+        <van-col span="12">
+          <view wx:for="{{books}}" wx:key="index">
+            <view wx:if="{{index%2 === 0}}" class="recbook_left" data-isbn="{{item.isbn}}" bindtap="toBookInfo">
+              <image class="bookcover" src="{{item.cover_url}}" mode="widthFix" />
+              <view class="booktitle">{{item.title}}</view>
+              <view class="bookauthor">{{item.author}}</view>
+              <view wx:if="{{item.rating==='0.0'}}" class="bookrating">暂无评分</view>
+              <view wx:else>
+                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ screenWidth*20 }}" color="#ffd21e" void-color="#f0f1f5" void-icon="star" readonly="true" />
+              </view>
+            </view>
+          </view>
+        </van-col>
+        <van-col span="12">
+          <view wx:for="{{books}}" wx:key="index">
+            <view wx:if="{{index%2 === 1}}" class="recbook_right" data-isbn="{{item.isbn}}" bindtap="toBookInfo">
+              <image class="bookcover" src="{{item.cover_url}}" mode="widthFix" />
+              <view class="booktitle">{{item.title}}</view>
+              <view class="bookauthor">{{item.author}}</view>
+              <view wx:if="{{item.rating==='0.0'}}" class="bookrating">暂无评分</view>
+              <view wx:else>
+                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ screenWidth*20 }}" color="#ffd21e" void-color="#f0f1f5" void-icon="star" readonly="true" />
+              </view>
+            </view>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+  </view>
+</view>
+
+<view class="blank"></view>
+
+<view class="scan" style="bottom: {{ scanBottom }}px; padding-bottom: {{ safeArea }}" bindtap="scanCode">
+  <van-button custom-class="scanbutton" color="#71BEAE">🔍 添加书籍</van-button>
+</view>

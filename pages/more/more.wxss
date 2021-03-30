@@ -1,0 +1,87 @@
+.cellgroup {
+  padding-left: 40rpx !important;
+  padding-right: 40rpx !important;
+}
+.cell {
+  height: 60px !important;
+  font-weight: 600 !important;
+  background-color: #f0f1f5 !important;
+}
+.topradius {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+.bottomradius {
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+.quit {
+  color: red !important;
+}
+.vanpopup {
+  background-color: #ffffff !important;
+}
+.popup {
+  text-align: center;
+}
+.popuptitle {
+  line-height: 80px;
+  color: #606266;
+}
+.confirm {
+  width: 90% !important;
+  height: 60px !important;
+  font-size: 18px !important;
+}
+.cancel {
+  width: 90% !important;
+  height: 60px !important;
+  margin-top: 10px;
+  font-size: 18px !important;
+}
+
+.bindemail {
+  width: 90% !important;
+  background-color: #ffffff !important;
+  padding-bottom: 20px !important;
+}
+.emailInput {
+  margin-bottom: 20px;
+}
+
+.more {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  width: 100%;
+  text-align: center;
+}
+.morepic {
+  width: 200px;
+  height: 211px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page {
+    background: #000000;
+  }
+  .navbar {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+  }
+  .navtitle {
+    color: #ffffff !important;
+  }
+  .item {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+  }
+  .vanpopup {
+    background-color: #191919 !important;
+  }
+  .popuptitle {
+    color: #ffffff;
+  }
+  /* DarkMode 下的样式 end */
+}

@@ -1,0 +1,81 @@
+page {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.loading {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nullcollection {
+  width: 100%;
+  margin-top: 40%;
+  text-align: center;
+}
+.nullpic {
+  width: 450rpx;
+}
+.nulltext {
+  color: #C0C4CC;
+  font-size: 15px;
+}
+
+.book {
+  position: relative;
+  margin-top: 80rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+  background-color: #f7f7f7;
+  border-radius: 20rpx;
+}
+.bookcover {
+  height: 240rpx;
+  margin-top: -40rpx;
+  margin-left: 40rpx;
+  border-radius: 20rpx;
+}
+.bookright {
+  width: 100%;
+  padding: 40rpx 0 40rpx 50rpx;
+  text-align: start;
+}
+.booktitle {
+  color: #71BEAE;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+.bookpages {
+  margin-top: 20rpx !important;
+}
+.bookauthor {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #909399;
+  word-break: break-all;
+}
+.bookrating {
+  position: absolute;
+  color: #ffd21e;
+  font-size: 38rpx;
+  font-weight: 600;
+  top: 40rpx;
+  right: 40rpx;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page {
+    background-color: #000000;
+  }
+  .navbar {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+  }
+  .navtitle {
+    color: #ffffff !important;
+  }
+  /* DarkMode 下的样式 end */
+}
