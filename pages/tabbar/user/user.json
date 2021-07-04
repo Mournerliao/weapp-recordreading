@@ -2,7 +2,9 @@
   "usingComponents": {
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-image": "@vant/weapp/image/index"
   },
   "navigationBarBackgroundColor": "@userNavBgColor",
   "navigationBarTextStyle": "@navTxtStyle"

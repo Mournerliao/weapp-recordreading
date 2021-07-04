@@ -11,12 +11,14 @@ page {
 }
 
 .nullcollection {
-  width: 100%;
-  margin-top: 40%;
-  text-align: center;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .nullpic {
-  width: 450rpx;
+  width: 525rpx;
 }
 .nulltext {
   color: #C0C4CC;
@@ -25,57 +27,77 @@ page {
 
 .book {
   position: relative;
-  margin-top: 80rpx;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
+  margin: 30px 60rpx 0 60rpx;
+  padding: 20px 40rpx 20px 40rpx;
   background-color: #f7f7f7;
-  border-radius: 20rpx;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
 }
 .bookcover {
-  height: 240rpx;
-  margin-top: -40rpx;
-  margin-left: 40rpx;
-  border-radius: 20rpx;
+  width: 200rpx;
+  height: auto;
+  border-radius: 10px;
+  flex-shrink: 0;
 }
-.bookright {
-  width: 100%;
-  padding: 40rpx 0 40rpx 50rpx;
+.bookinfo {
+  margin-left: 40rpx;
+  margin-right: 60rpx;
   text-align: start;
+  flex: 1;
+  width: 0;
 }
 .booktitle {
   color: #71BEAE;
-  font-size: 36rpx;
+  font-size: 18px;
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .bookpages {
-  margin-top: 20rpx !important;
+  margin-top: 10px !important;
 }
 .bookauthor {
-  margin-top: 20rpx;
-  font-size: 30rpx;
+  margin-top: 10px;
+  font-size: 15px;
   color: #909399;
-  word-break: break-all;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .bookrating {
   position: absolute;
   color: #ffd21e;
-  font-size: 38rpx;
+  font-size: 19px;
   font-weight: 600;
   top: 40rpx;
   right: 40rpx;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* DarkMode 下的样式 start */
+.blank {
+  height: 60px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* @media (prefers-color-scheme: dark) {
+
   page {
-    background-color: #000000;
+    background-color: #010101;
   }
   .navbar {
     color: #ffffff !important;
-    background-color: #000000 !important;
+    background-color: #010101 !important;
   }
   .navtitle {
     color: #ffffff !important;
   }
-  /* DarkMode 下的样式 end */
-}
+  .book {
+    background-color: #1c1c1d;
+  }
+  .bookpages {
+    background-color: #ffd21e !important;
+    color: #ffffff !important;
+  }
+
+} */

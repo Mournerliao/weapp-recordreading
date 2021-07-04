@@ -1,9 +1,9 @@
-<cover-view class="mynavbar" style="padding-top: {{navHeight}}px;">
-  <cover-view class="navbarline">
-    <cover-image class="logo" src="../../../static/img/logo.png" mode="widthFix"></cover-image>
-    <cover-view class="navbartitle">你阅读了吗</cover-view>
-  </cover-view>
-</cover-view>
+<view class="mynavbar" style="padding-top: {{navHeight}}px;">
+  <view class="navbarline">
+    <image class="logo" src="../../../static/img/logo.png" mode="widthFix"></image>
+    <view class="navbartitle">你阅读了吗</view>
+  </view>
+</view>
 
 <view class="head_search" bindtap="toSearch" style="margin-top: {{navHeight+56}}px;">
   <view class="text_search colorGray">查找或添加书籍</view>
@@ -12,10 +12,10 @@
 
 <view wx:if="{{!hasUserInfo}}">
   <view class="bankview">
-    <image class="bankpic" src="../../../static/img/login.png" mode="widthFix"></image>
+    <van-image custom-class="bankpic" width="80%" src="../../../../static/img/login.png" fit="widthFix" />
     <view class="banktext">开始您的阅读之旅</view>
-    <van-button custom-class="bankbutton" color="#71BEAE" open-type="getUserInfo" bind:getuserinfo="login"
-      loading="{{ loginLoading }}" loading-text="登录中..." type="primary">
+    <van-button custom-class="bankbutton" color="#71BEAE" bind:click="login" loading="{{ loginLoading }}"
+      loading-text="登录中..." type="primary">
       🍟 微信登录
     </van-button>
   </view>
@@ -27,7 +27,7 @@
 
 <view wx:if="{{hasUserInfo && !loading && !ifReading}}">
   <view class="bankview">
-    <image class="bankpic" src="../../../static/img/noreading.png" mode="widthFix"></image>
+    <van-image custom-class="bankpic" width="80%" src="../../../../static/img/noreading.png" fit="widthFix" />
     <view class="banktext">阅读之旅准备就绪</view>
     <van-button custom-class="bankbutton" color="#71BEAE" bind:click="toSearch" type="primary">
       🌈 设置打卡书籍
@@ -35,39 +35,43 @@
   </view>
 </view>
 
-<view wx:if="{{hasUserInfo && !loading && ifReading}}">
+<view hidden="{{!(hasUserInfo && !loading && ifReading)}}">
   <view id="top" class="top" bindtap="toBookInfo">
-    <van-row>
-      <van-col span="11">
-        <image class="bookcover" src="{{cover_url}}" mode="heightFix"></image>
-      </van-col>
+    <van-image custom-class="bookcover" height="263rpx" src="{{cover_url}}" fit="heightFix" radius="10" />
 
-      <van-col span="10">
-        <view class="topright">
-          <view class="booktitle">{{title}}</view>
-          <view class="bookauthor">{{author}}</view>
-          <view class="nowreading">
-            <van-tag color="#F8C36A" size="large">已阅读：{{days}}天</van-tag>
-          </view>
-        </view>
-      </van-col>
-    </van-row>
+    <view class="topinfo">
+      <view class="booktitle">{{title}}</view>
+      <view class="bookauthor">{{author}}</view>
+      <view class="nowreading">
+        <van-tag color="#F8C36A" size="large">已阅读：{{days}}天</van-tag>
+      </view>
+    </view>
   </view>
 
-  <!-- <view class="circle">
-    <van-circle size="{{screenWidth*260}}" color="#71BEAE" layer-color="#f0f1f5" stroke-width="40"
-      value="{{ percentage }}">
-      <text class="readpages">{{ readpages }}</text><text class="allpages">/{{ allpages }}</text>
-      <view class="circletext">当前阅读进度</view>
-    </van-circle>
-  </view> -->
+  <van-button custom-class="changebook" color="#f6f6f6" bind:click="showChangeBook" type="primary">
+    切换书籍
+  </van-button>
+
+  <van-dialog use-slot title="选择书籍" show="{{ changeBookShow }}" bind:close="onClose" show-confirm-button="{{false}}"
+    show-cancel-button="{{false}}" close-on-click-overlay>
+    <van-radio-group value="{{ selectBook }}">
+      <van-cell-group border="{{false}}">
+        <block wx:for="{{books}}" wx:key="index">
+          <van-cell custom-class="cell" title="{{item.title}}" clickable data-isbn="{{item.isbn}}"
+            bind:click="changeBook" border="{{false}}">
+            <van-radio slot="right-icon" name="{{item.isbn}}" checked-color="#71beae" />
+          </van-cell>
+        </block>
+      </van-cell-group>
+    </van-radio-group>
+  </van-dialog>
 
   <view class="progresscontainer">
     <view class="progressbox">
       <!-- 绘制圆环背景 -->
-      <canvas class="progressbg" canvas-id="canvasProgressbg" />
+      <canvas class="progressbg" type="2d" id="canvasBg" />
       <!-- 绘制加载中圆弧 -->
-      <canvas class="progresscanvas" canvas-id="canvasProgress" />
+      <canvas class="progresscanvas" type="2d" id="canvasProgress" />
       <!-- 绘制圆弧中心提示文字 -->
       <view class="progresstext">
         <text class="readpages">{{ readpages }}</text><text class="allpages">/{{ allpages }}</text>
@@ -76,23 +80,42 @@
     </view>
   </view>
 
-  <view class="readpk">阅读PK</view>
+  <view class="readpktitle">阅读PK</view>
   <view class="ornament"></view>
-  <!-- <view>
-    <view class="myprogress">
-      <view class="info">
-        <image class="avatar" src="{{myAvatar}}"></image>
-        <view class="name">{{myName}}</view>
-      </view>
-    </view>
 
-    <view class="cmpprogress">
-      <view class="info">
-        <image class="avatar" src="{{cmpAvatar}}"></image>
-        <view class="name">{{cmpName}}</view>
-      </view>
+  <view wx:if="{{!ifPk}}" class="nopk">
+    <van-image custom-class="nopkimg" width="70%" src="../../../../static/img/contest.png" fit="widthFix" />
+    <van-button custom-class="bankbutton" color="#71BEAE" bind:click="toPk" type="primary">
+      👑 迎接挑战
+    </van-button>
+  </view>
+
+  <view wx:else class="readpk">
+    <view class="myInfo grid">
+      <van-image wx:if="{{readpages>cmpReadpages}}" custom-class="winpic" width="100rpx"
+        src="../../../../static/img/win.png" fit="widthFix" />
+      <van-image width="120rpx" src="{{myAvatar}}" fit="widthFix" round />
+      <view class="name">{{myName}}</view>
+      <view class="smalltitle">阅读时长</view>
+      <view class="smallinfo">{{days}}天</view>
+      <view class="smalltitle">已阅读页数</view>
+      <view class="smallinfo">{{readpages}}</view>
+      <view class="smalltitle">阅读进度</view>
+      <view class="smallinfo">{{percentage}}%</view>
     </view>
-  </view> -->
+    <view class="cmpInfo grid">
+      <van-image wx:if="{{readpages<cmpReadpages}}" custom-class="winpic" width="100rpx"
+        src="../../../../static/img/win.png" fit="widthFix" />
+      <van-image width="120rpx" src="{{cmpAvatar}}" fit="widthFix" round />
+      <view class="name">{{cmpName}}</view>
+      <view class="smalltitle">阅读时长</view>
+      <view class="smallinfo">{{cmpDays}}天</view>
+      <view class="smalltitle">已阅读页数</view>
+      <view class="smallinfo">{{cmpReadpages}}</view>
+      <view class="smalltitle">阅读进度</view>
+      <view class="smallinfo">{{cmpPercentage}}%</view>
+    </view>
+  </view>
 
   <view class="blank"></view>
 </view>

@@ -1,6 +1,11 @@
-function mySubstring(str,position){
+function myDaySubstring(str,position) {
+  return str.substring(0,position);
+}
+function myTimeSubstring(str,position) {
   return str.substring(position);
 }
+
 module.exports = {
-  mySubstring: mySubstring
+  myDaySubstring: myDaySubstring,
+  myTimeSubstring: myTimeSubstring
 }

@@ -1,0 +1,23 @@
+<van-nav-bar custom-class="navbar" title-class="navtitle" title="寻找对手" fixed placeholder="true"
+  bind:click-left="onClickLeft" border="{{false}}">
+  <van-icon name="arrow-left" slot="left" size="20px" />
+</van-nav-bar>
+
+<view wx:if="{{!ifData}}" class="nodata">
+  <image class="nodataimg" src="../../static/img/nodata.png" mode="widthFix"></image>
+  <view class="nodatainfo">无敌是多么寂寞</view>
+</view>
+
+<view wx:else class="cellgroup">
+  <view wx:for="{{opponents}}" wx:key="index">
+    <view class="opponent">
+      <image class="avatar" src="{{item.imgUrl}}"></image>
+      <view class="opponentinfo">
+        <view class="username">{{item.name}}</view>
+        <view class="userinfo">时长：{{item.days}} 天</view>
+        <view class="userinfo">进度：{{item.haveRead}} 页</view>
+      </view>
+      <button class="select" data-userID="{{item.userID}}" bindtap="select">挑战ta</button>
+    </view>
+  </view>
+</view>

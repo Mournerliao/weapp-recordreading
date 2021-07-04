@@ -8,20 +8,19 @@
     "pages/collection/collection",
     "pages/more/more",
     "pages/clockin/clockin",
-    "pages/login/login"
+    "pages/opponent/opponent"
   ],
   "themeLocation": "theme.json",
-  "darkmode": true,
+  "darkmode": false,
   "window": {
     "navigationBarBackgroundColor": "@navBgColor",
     "navigationBarTextStyle": "@navTxtStyle"
   },
   "tabBar": {
-    "custom": true,
     "backgroundColor": "#f0f1f5",
     "borderStyle": "white",
-    "color": "#71beae",
-    "selectedColor": "#F8C36A",
+    "color": "#303133",
+    "selectedColor": "#303133",
     "list": [
       {
         "pagePath": "pages/tabbar/main/main",

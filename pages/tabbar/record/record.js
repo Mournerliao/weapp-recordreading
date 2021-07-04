@@ -1,8 +1,11 @@
 //获取应用实例
-const app = getApp()
+const app = getApp();
+import Poster from '../../../miniprogram_npm/wxa-plugin-canvas/poster/poster';
 
 Page({
   data: {
+    hasUserInfo: false,
+    loading: false,
     navHeight: app.globalData.navBarHeight,
     defaultValue: '',
     //星期数组
@@ -21,7 +24,6 @@ Page({
     title: '',
     //格式化日期
     format: '',
-
     year: 0,
     month: 0,
     date: 0,
@@ -36,7 +38,154 @@ Page({
     ifCurrentRecord: true,
     ifAllRecord: true,
     currentRecords: [],
-    allRecords: []
+    allRecords: [],
+    dialogShow: false,
+    sortShow: false,
+    currentDate: new Date().getTime(),
+    formatter(type, value) {
+      if (type === 'year') {
+        return `${value}年`;
+      } else if (type === 'month') {
+        return `${value}月`;
+      }
+      return `${value}日`;
+    },
+    startDate: '',
+    endDate: '',
+
+    posterConfig: {
+      width: 750,
+      height: 1380,
+      backgroundColor: '#ffffff',
+      debug: false,
+      pixelRatio: 1,
+      blocks: [{
+        x: 0,
+        y: 980,
+        width: 750,
+        height: 50,
+        paddingLeft: 65,
+        paddingRight: 65,
+        borderWidth: 0,
+        backgroundColor: '#ffffff',
+        text: {
+          text: [{
+            text: '',
+            fontSize: 32,
+            color: '#303133',
+            textAlign: 'left'
+          }]
+        }
+      }, {
+        x: 0,
+        y: 1110,
+        width: 750,
+        height: 270,
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderWidth: 0,
+        backgroundColor: '#f0f1f5',
+        zIndex: 5
+      }],
+      texts: [{
+        x: 210,
+        y: 560,
+        baseLine: 'middle',
+        text: '',
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 65,
+        y: 660,
+        baseLine: 'top',
+        text: '',
+        fontSize: 32,
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 65,
+        y: 720,
+        baseLine: 'top',
+        text: '',
+        fontSize: 32,
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 65,
+        y: 780,
+        baseLine: 'top',
+        text: '',
+        fontSize: 32,
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 65,
+        y: 840,
+        baseLine: 'top',
+        text: '',
+        fontSize: 32,
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 65,
+        y: 920,
+        baseLine: 'top',
+        text: '',
+        fontSize: 32,
+        color: '#303133',
+        textAlign: 'left'
+      }, {
+        x: 265,
+        y: 1190,
+        baseLine: 'top',
+        text: '长按识别小程序码',
+        lineHeight: 40,
+        fontSize: 32,
+        color: '#000000',
+        textAlign: 'left',
+        zIndex: 10
+      }, {
+        x: 265,
+        y: 1250,
+        baseLine: 'top',
+        text: '来「你阅读了吗」记录你的读书历程',
+        lineHeight: 30,
+        fontSize: 28,
+        color: '#606266',
+        textAlign: 'left',
+        zIndex: 10
+      }],
+      images: [{
+          width: 750,
+          height: 470,
+          x: 0,
+          y: 0,
+          borderRadius: 0,
+          url: 'https://www.xiaoqw.online/recordreading/source/Reading.png',
+        }, {
+          width: 120,
+          height: 120,
+          x: 60,
+          y: 500,
+          borderRadius: 120,
+          url: '',
+        },
+        {
+          width: 180,
+          height: 180,
+          x: 45,
+          y: 1145,
+          borderRadius: 180,
+          url: 'https://www.xiaoqw.online/recordreading/source/weappCode.png',
+          zIndex: 10,
+          borderWidth: 20,
+          borderColor: '#ffffff'
+        }
+      ]
+    },
+    poster: false
   },
   onShow() {
     if (typeof this.getTabBar === 'function' &&
@@ -47,7 +196,22 @@ Page({
     };
   },
   onLoad: function () {
+    this.setData({
+      hasUserInfo: wx.getStorageSync('hasUserInfo')
+    })
     this.today();
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+  },
+  //分享功能
+  onShareAppMessage(res) {
+    return {
+      title: "记录你的读书历程",
+      // imageUrl: "https://www.xiaoqw.online/recordreading/source/shareImgTop.png",
+      path: "/pages/tabbar/main/main"
+    }
   },
   select: function (e) {
     this.setData({
@@ -98,6 +262,9 @@ Page({
   },
   //默认选中当天 并初始化组件
   today: function () {
+    this.setData({
+      loading: true
+    })
     let DATE = this.data.defaultValue ? new Date(this.data.defaultValue) : new Date(),
       year = DATE.getFullYear(),
       month = DATE.getMonth() + 1,
@@ -120,6 +287,10 @@ Page({
 
     //发送事件监听
     this.triggerEvent('select', select);
+
+    this.setData({
+      loading: false
+    })
   },
 
   //选择 并格式化数据
@@ -173,7 +344,7 @@ Page({
     this.setData({
       thisMonthDays
     })
-    // console.log('thisMonthDays', thisMonthDays)
+    // console.log('thisMonthDays', thisMonthDays);
   },
   //获取当月空出的天数
   createEmptyGrids: function (year, month) {
@@ -221,63 +392,243 @@ Page({
   getCurrentRecords(date) {
     console.log(date);
     let that = this;
-    wx.request({
-      url: 'https://www.xiaoqw.online/recordreading/sever/getCurrentRecords.php',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        userID: wx.getStorageSync('userID'),
-        isbn: wx.getStorageSync('isbn'),
-        date: date
-      },
-      success: res => {
-        console.log(res.data);
 
-        if(res.data.length != 0) {
-          that.setData({
-            currentRecords: res.data,
-            ifCurrentRecord: true
-          })
-        } else {
-          console.log("暂无记录");
-          that.setData({
-            ifCurrentRecord: false
-          })
-        }
-      }
-    })
-  },
-  getAllRecords(event) {
-    let that = this;
-    if(event.detail.name == "all" && this.data.allRecords.length == 0) {
+    if (this.data.hasUserInfo) {
       wx.request({
-        url: 'https://www.xiaoqw.online/recordreading/sever/getAllRecords.php',
+        url: 'https://www.xiaoqw.online/recordreading/sever/getCurrentRecords.php',
         method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
           userID: wx.getStorageSync('userID'),
-          isbn: wx.getStorageSync('isbn')
+          date: date
         },
         success: res => {
           console.log(res.data);
-  
-          if(res.data.length != 0) {
+          res.data.reverse();
+          if (res.data.length != 0) {
             that.setData({
-              allRecords: res.data,
-              ifAllRecord: true
+              currentRecords: res.data,
+              ifCurrentRecord: true
             })
           } else {
             console.log("暂无记录");
             that.setData({
-              ifAllRecord: false
+              ifCurrentRecord: false
             })
           }
         }
       })
+    } else {
+      that.setData({
+        ifCurrentRecord: false
+      })
     }
-  }
+  },
+  getAllRecords(event) {
+    let that = this;
+    if (this.data.hasUserInfo) {
+      if (event.detail.name == "all" && this.data.allRecords.length == 0) {
+        wx.request({
+          url: 'https://www.xiaoqw.online/recordreading/sever/getAllRecords.php',
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            userID: wx.getStorageSync('userID')
+          },
+          success: res => {
+            console.log(res.data);
+            res.data.reverse();
+            if (res.data.length != 0) {
+              that.setData({
+                allRecords: res.data,
+                ifAllRecord: true
+              })
+            } else {
+              console.log("暂无记录");
+              that.setData({
+                ifAllRecord: false
+              })
+            }
+          }
+        })
+      }
+    } else {
+      that.setData({
+        ifAllRecord: false
+      })
+    }
+  },
+  toExport() {
+    if (this.data.hasUserInfo) {
+      this.setData({
+        dialogShow: true
+      })
+    } else {
+      wx.showToast({
+        title: '您尚未登陆',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  onClose() {
+    this.setData({
+      dialogShow: false
+    });
+  },
+  selectStartDate(event) {
+    let time = new Date(event.detail); //根据时间戳生成的时间对象
+    let startDate = (time.getFullYear()) + "-" + (time.getMonth() + 1) + "-" + (time.getDate());
+    this.setData({
+      startDate: startDate
+    })
+  },
+  selectEndDate(event) {
+    let time = new Date(event.detail); //根据时间戳生成的时间对象
+    let endDate = (time.getFullYear()) + "-" + (time.getMonth() + 1) + "-" + (time.getDate());
+    this.setData({
+      endDate: endDate
+    })
+  },
+  closeShare() {
+    this.setData({
+      showShare: false
+    })
+  },
+  showSelectSort() {
+    let email = wx.getStorageSync('email');
+
+    if (email == '') {
+      wx.showToast({
+        title: '您尚未设置邮箱',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      this.setData({
+        sortShow: true
+      })
+    }
+  },
+  closeSelectSort() {
+    this.setData({
+      sortShow: false
+    })
+  },
+  exportPDFByTime() {
+    let that = this;
+
+    wx.showLoading({
+      mask: true,
+      title: '正在导出'
+    });
+
+    wx.request({
+      url: 'https://www.xiaoqw.online/recordreading/sever/exportPDF.php',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        userID: wx.getStorageSync('userID'),
+        name: wx.getStorageSync('name'),
+        startDate: that.data.startDate,
+        endDate: that.data.endDate,
+        email: wx.getStorageSync('email')
+      },
+      success: res => {
+        if (res.data === 1) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '阅读记录已发送',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            sortShow: false
+          })
+        } else {
+          wx.hideLoading();
+          wx.showToast({
+            title: '操作未成功，请再试一次',
+            icon: 'none',
+            duration: 2000
+          })
+          that.setData({
+            sortShow: false
+          })
+        }
+      }
+    })
+  },
+  exportPDFByName() {
+    wx.showToast({
+      title: '敬请期待',
+      icon: 'none'
+    })
+  },
+  onCreatePoster() {
+    let that = this;
+    wx.request({
+      url: 'https://www.xiaoqw.online/recordreading/sever/exportPoster.php',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        userID: wx.getStorageSync('userID'),
+        startDate: that.data.startDate,
+        endDate: that.data.endDate
+      },
+      success: res => {
+        console.log(res.data);
+
+        let days, books, records, pages, max, title;
+        days = that.data.startDate + ' 至 ' + that.data.endDate + ' 共 ' + res.data.totalDays + ' 天';
+        books = '您一共阅读了 ' + res.data.totalBooks + ' 本书';
+        records = '打卡了 ' + res.data.totalRecords + ' 次';
+        pages = '共 ' + res.data.totalPages + ' 页';
+
+        if (!res.data.max) {
+          max = '看起来您对它们一视同仁';
+          title = ''
+        } else {
+          max = '其中打卡次数最多的书籍是';
+          title = '《' + res.data.max + '》'
+        }
+
+        that.setData({
+          ['posterConfig.images[' + 1 + '].url']: wx.getStorageSync('imgUrl'),
+          ['posterConfig.texts[' + 0 + '].text']: wx.getStorageSync('name'),
+          ['posterConfig.texts[' + 1 + '].text']: days,
+          ['posterConfig.texts[' + 2 + '].text']: books,
+          ['posterConfig.texts[' + 3 + '].text']: records,
+          ['posterConfig.texts[' + 4 + '].text']: pages,
+          ['posterConfig.texts[' + 5 + '].text']: max,
+          ['posterConfig.blocks[' + 0 + '].text.text[' + 0 + '].text']: title,
+        }, () => {
+          Poster.create(true); // 入参：true为抹掉重新生成
+          that.setData({
+            poster: true
+          })
+        });
+      }
+    });
+  },
+  onPosterSuccess(e) {
+    const {
+      detail
+    } = e;
+    wx.previewImage({
+      current: detail,
+      urls: [detail]
+    })
+  },
+  onPosterFail(err) {
+    console.error(err);
+  },
 })

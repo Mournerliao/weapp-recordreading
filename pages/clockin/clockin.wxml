@@ -4,7 +4,7 @@
 </van-nav-bar>
 
 <view wx:if="{{loading}}" class="loading">
-  <van-loading size="35" color="#71beae" />
+  <van-loading size="35" color="#303133" />
 </view>
 
 <view wx:else>
@@ -18,18 +18,56 @@
     </view>
     <view class="cell">
       <view class="label">已看到的页码</view>
-      <input class="input" value="{{ value }}" placeholder="请输入页码" type="number" confirm-type="next" bindblur="thisRead" />
+      <input class="input" placeholder="共 {{allpages}} 页" type="number" confirm-type="next" bindblur="thisRead" />
     </view>
     <view class="cell">
       <view class="label">打卡日期</view>
       <view class="input">{{date}}</view>
     </view>
+    <view class="readnote">
+      <view class="notetitle flexlayout">
+        <text>句段摘抄</text>
+        <button class="ocr" bindtap="doUpload">
+          <van-icon name="photograph" />
+        </button>
+      </view>
+      <scroll-view class="note" scroll-y bindtap="showExcerptDialog">
+        <textarea class="input" value="{{excerpt}}" placeholder="请输入内容" auto-height maxlength="-1"
+          disable-default-padding disabled />
+      </scroll-view>
+
+      <van-dialog use-slot title="句段摘抄" show="{{ showDialog1 }}" bind:close="onClose1" closeOnClickOverlay="true"
+        show-confirm-button="{{false}}" show-cancel-button="{{false}}">
+        <view class="dialog">
+          <textarea class="input inputheight" value="{{excerpt}}" confirm-type="done" placeholder="请输入内容" auto-height
+            maxlength="-1" disable-default-padding bindblur="myExcerpt" />
+          <view class="dialogbuttons">
+            <van-button custom-class="dialogbutton" color="#F56C6C" bind:click="clearExcerpt">清空</van-button>
+            <van-button custom-class="dialogbutton" color="#71beae" bind:click="onClose1">确定</van-button>
+          </view>
+        </view>
+      </van-dialog>
+    </view>
+
     <view class="readnote bottomradius">
       <view class="notetitle">阅读笔记</view>
-      <view class="note">
-        <textarea class="input" value="{{ value }}" placeholder="请输入内容" auto-height confirm-type="done" bindblur="myNote" maxlength="-1"
-          disable-default-padding />
+      <scroll-view class="note bottomdistance" scroll-y bindtap="showNoteDialog">
+        <textarea class="input" value="{{note}}" placeholder="请输入内容" auto-height maxlength="-1" disable-default-padding
+          disabled />
+      </scroll-view>
+
+      <van-dialog use-slot title="阅读笔记" show="{{ showDialog2 }}" bind:close="onClose2" closeOnClickOverlay="true"
+        show-confirm-button="{{false}}" show-cancel-button="{{false}}">
+        <view class="dialog">
+          <textarea class="input inputheight" value="{{note}}" placeholder="请输入内容" confirm-type="done" auto-height
+            maxlength="-1" disable-default-padding bindblur="myNote" />
+          <view class="dialogbuttons">
+            <van-button custom-class="dialogbutton" color="#F56C6C" bind:click="clearNote">清空</van-button>
+            <van-button custom-class="dialogbutton" color="#73beae" bind:click="onClose2">确定</van-button>
+          </view>
         </view>
+
+      </van-dialog>
     </view>
   </view>
 

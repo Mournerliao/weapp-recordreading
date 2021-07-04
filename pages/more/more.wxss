@@ -28,6 +28,7 @@
   line-height: 80px;
   color: #606266;
 }
+
 .confirm {
   width: 90% !important;
   height: 60px !important;
@@ -40,13 +41,23 @@
   font-size: 18px !important;
 }
 
-.bindemail {
-  width: 90% !important;
-  background-color: #ffffff !important;
-  padding-bottom: 20px !important;
+.email {
+  width: 90%;
+  height: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 30px;
+  background-color: #f0f1f5;
+  border-radius: 25px;
 }
-.emailInput {
-  margin-bottom: 20px;
+
+.update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #71beae;
+  border-radius: 30px;
 }
 
 .more {
@@ -61,27 +72,31 @@
   height: 211px;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* DarkMode 下的样式 start */
+/* @media (prefers-color-scheme: dark) {
+
   page {
-    background: #000000;
+    background: #010101;
   }
   .navbar {
     color: #ffffff !important;
-    background-color: #000000 !important;
+    background-color: #010101 !important;
   }
   .navtitle {
     color: #ffffff !important;
   }
-  .item {
+  .cell {
+    background-color: #1c1c1d !important;
     color: #ffffff !important;
-    background-color: #000000 !important;
   }
   .vanpopup {
-    background-color: #191919 !important;
+    background-color: #1c1c1d !important;
   }
   .popuptitle {
     color: #ffffff;
   }
-  /* DarkMode 下的样式 end */
-}
+  .email {
+    background-color: #010101;
+    color: #ffffff;
+  }
+
+} */

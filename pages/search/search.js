@@ -13,11 +13,11 @@ Page({
   },
   onLoad: function (options) {
     wx.request({
-      url: 'https://www.xiaoqw.online/recordreading/sever/recommendation.php',
+      url: 'https://www.xiaoqw.online/recordreading/sever/getRecommendations.php',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success: res=>{
+      success: res => {
         this.setData({
           books: res.data,
           loading: false
@@ -54,9 +54,9 @@ Page({
     if (re.test(this.data.inputValue)) {
       console.log(this.data.inputValue)
       wx.navigateTo({
-        url: '../bookinfo/bookinfo?id=' + this.data.inputValue
+        url: '../bookinfo/bookinfo?isbn=' + this.data.inputValue
       })
-    }else{
+    } else {
       Toast('只能输入数字！');
     }
   },

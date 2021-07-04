@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55px;
+  height: 60px;
   background: #f0f1f5;
   display: flex;
   padding-bottom: env(safe-area-inset-bottom);
@@ -43,7 +43,7 @@
 @media (prefers-color-scheme: dark) {
   /* DarkMode 下的样式 start */
   .tab-bar {
-    background-color: #191919;
+    background-color: #1c1c1d;
   }
   /* DarkMode 下的样式 end */
 }

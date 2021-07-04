@@ -2,8 +2,6 @@
   "usingComponents": {
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index",
     "van-rate": "@vant/weapp/rate/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-loading": "@vant/weapp/loading/index"

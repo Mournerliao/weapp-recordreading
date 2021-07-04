@@ -7,6 +7,7 @@ page {
   top: 0;
   width: 100%;
   background-color: #ffffff;
+  z-index: 999;
 }
 
 .navbarline {
@@ -18,7 +19,9 @@ page {
 
 .logo {
   width: 40px;
+  height: auto;
   margin-left: 20px;
+  border-radius: 50%;
 }
 
 .navbartitle {
@@ -38,11 +41,11 @@ page {
   box-sizing: border-box;
   padding-left: 42rpx;
   width: 100%;
-  height: 80rpx;
+  height: 40px;
   font-size: 13px;
   color: grey;
   background-color: #f0f1f5;
-  border-radius: 20rpx;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 }
@@ -72,8 +75,7 @@ page {
 }
 
 .bankpic {
-  width: 80%;
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 .banktext {
@@ -94,55 +96,67 @@ page {
   margin-top: 12%;
   margin-left: 60rpx;
   margin-right: 60rpx;
+  padding: 40rpx;
   background-color: #f7f7f7;
-  border-radius: 20rpx;
+  border-radius: 10px;
+  display: flex;
 }
 
 .bookcover {
-  height: 240rpx;
-  margin-top: -40rpx;
-  margin-left: 40rpx;
-  border-radius: 20rpx;
+  margin-top: -80rpx !important;
+  flex-shrink: 0 !important;
   box-shadow: 0px -6px 16px -8px rgba(0, 0, 0, 0.08),
     0px -9px 28px 0px rgba(0, 0, 0, 0.05),
-    0px -12px 48px 16px rgba(0, 0, 0, 0.03);
+    0px -12px 48px 16px rgba(0, 0, 0, 0.03) !important;
 }
 
-.topright {
-  width: 100%;
-  padding: 30rpx 20rpx 40rpx 40rpx;
+.topinfo {
+  margin-left: 40rpx;
   text-align: center;
+  flex: 1;
+  width: 0;
 }
 
 .booktitle {
   color: #71BEAE;
   font-size: 18px;
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .bookauthor {
-  margin-top: 24rpx;
+  margin-top: 12px;
   font-size: 15px;
   color: #909399;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .nowreading {
-  margin-top: 24rpx;
+  margin-top: 12px;
   color: #303133;
 }
 
-/* .circle {
-  margin-top: 10%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.changebook {
+  border-radius: 10px !important;
+  color: #909399 !important;
+  position: absolute !important;
+  right: 60rpx !important;
+  margin-top: 12px !important;
 }
-.van-circle {
-  border-radius: 50%;
-} */
+
+.cell {
+  height: 60px !important;
+  /* font-weight: 600 !important; */
+  display: flex !important;
+  align-items: center !important;
+}
 
 .progresscontainer {
-  margin-top: 10%;
+  margin-top: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -175,7 +189,7 @@ page {
 
 .readpages {
   color: #71BEAE;
-  font-size: 60rpx;
+  font-size: 30px;
   font-weight: 600;
 }
 
@@ -187,11 +201,11 @@ page {
   color: #909399;
 }
 
-.readpk {
-  margin-top: 8%;
+.readpktitle {
+  margin-top: 6%;
   margin-left: 60rpx;
   color: #303133;
-  font-size: 34rpx;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -201,95 +215,101 @@ page {
   width: 40px;
   height: 3px;
   background-color: #F8C36A;
-  border-radius: 6rpx;
+  border-radius: 3px;
 }
 
-.myprogress {
-  margin-top: 45rpx;
-  padding-left: 80rpx;
-  display: flex;
-}
-
-.cmpprogress {
-  margin-top: 20rpx;
-  padding-right: 80rpx;
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
+.nopk {
   text-align: center;
 }
 
-.avatar {
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 50%;
+.nopkimg {
+  margin-top: 20px !important;
+}
+
+.readpk {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid {
+  width: 290rpx;
+  margin-top: 40px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #f0f1f5;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.myInfo {
+  margin-left: 60rpx;
+}
+
+.cmpInfo {
+  margin-right: 60rpx;
 }
 
 .name {
-  margin-top: 10rpx;
-  color: #606266;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #303133;
+  margin-top: 5px;
 }
 
-.progress {
-  width: 400rpx;
-  margin-left: 40rpx;
-  margin-right: 40rpx;
+.smalltitle {
+  font-size: 14px;
+  color: #909399;
+  margin-top: 12px;
+}
+
+.smallinfo {
+  font-size: 15px;
+  font-style: italic;
+  margin-top: 5px;
+  color: #303133;
+}
+
+.winpic {
+  position: absolute !important;
+  top: -55rpx !important;
+  left: 95rpx !important;
 }
 
 .blank {
-  height: 100px;
-  padding-bottom: calc(50px + env(safe-area-inset-bottom));
+  height: 40px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 
-  /* DarkMode 下的样式 start */
   page {
-    background: #000000;
+    background: #010101;
   }
 
-  .navbar {
+  .mynavbar {
     color: #ffffff !important;
-    background-color: #000000 !important;
+    background-color: #010101 !important;
   }
 
-  .navtitle {
+  .navbartitle {
     color: #ffffff !important;
   }
 
   .text_search {
     color: #5d5d5d;
-    background-color: #191919;
+    background-color: #1c1c1d;
   }
 
   .top {
-    background-color: #191919;
+    background-color: #1c1c1d;
   }
 
-  .bookcover {
-    box-shadow: none;
-  }
-
-  .van-circle {
-    box-shadow: none;
-  }
-
-  .allpages {
+  .readpktitle {
     color: #ffffff;
   }
 
-  .circletext {
+  .banktext {
     color: #ffffff;
   }
 
-  .clockin {
-    box-shadow: none !important;
-  }
-
-  /* DarkMode 下的样式 end */
-}
+} */

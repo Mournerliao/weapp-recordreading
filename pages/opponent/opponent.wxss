@@ -1,0 +1,88 @@
+.nodata {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nodataimg {
+  width: 70%;
+  height: auto;
+}
+.nodatainfo {
+  color: #C0C4CC;
+  font-size: 15px;
+}
+
+.cellgroup {
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  border-radius: 20px;
+  background-color: #f0f1f5;
+}
+.opponent {
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.opponentinfo {
+  width: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 40rpx;
+  word-break: break-all;
+}
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.username {
+  font-weight: 600;
+  color: #303133;
+}
+.userinfo {
+  font-size: 14px;
+  color: #606266;
+  margin-top: 5px;
+}
+.select {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F56C6C;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  position: absolute;
+  right: 80rpx;
+  padding: 0;
+}
+.select::after {
+  border: none;
+}
+
+/* @media (prefers-color-scheme: dark) {
+
+  page {
+    background: #010101;
+  }
+  .navbar {
+    color: #ffffff !important;
+    background-color: #010101 !important;
+  }
+  .navtitle {
+    color: #ffffff !important;
+  }
+  .cellgroup {
+    background-color: #1c1c1d;
+  }
+  .username {
+    color: #ffffff;
+  }
+
+} */

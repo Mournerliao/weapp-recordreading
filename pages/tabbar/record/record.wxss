@@ -9,6 +9,7 @@ page {
   align-items: center;
   background-color: #ffffff;
 }
+
 .navbartitle {
   margin-left: 20px;
   font-size: 54rpx;
@@ -25,6 +26,7 @@ page {
   border-bottom-left-radius: 20px;
   color: #303133;
 }
+
 /* 标题 */
 .calendar-title {
   line-height: 70rpx;
@@ -33,6 +35,7 @@ page {
   padding: 0 40rpx;
   box-sizing: border-box;
 }
+
 .ctrl {
   background: #ffffff;
   width: 60rpx;
@@ -40,26 +43,31 @@ page {
   text-align: center;
   border-radius: 50%;
 }
+
 .item {
   display: inline-block;
   vertical-align: middle;
   line-height: 60rpx;
 }
+
 .title {
   min-width: 300rpx;
   text-align: center;
 }
+
 .today {
   float: right;
   margin-top: 13rpx;
   font-size: 14px;
 }
+
 /* 滚动展示 */
 .calendar-x {
   margin-left: 20px;
   height: 100px;
   white-space: nowrap;
 }
+
 .grid {
   display: inline-block;
   position: relative;
@@ -69,9 +77,11 @@ page {
   margin-top: 15px;
   margin-left: 20px;
 }
+
 .grid:first-child {
   margin-left: 0;
 }
+
 .insidegrid {
   width: 70px;
   height: 70px;
@@ -79,6 +89,7 @@ page {
   flex-direction: column;
   justify-content: center;
 }
+
 .select {
   background: #71BEAE;
   color: #ffffff;
@@ -86,95 +97,220 @@ page {
   /* box-shadow:  12rpx 12rpx 24rpx #d9d9d9,
              -12rpx -12rpx 24rpx #ffffff; */
 }
+
 .noselect {
   background: #f0f1f5;
   color: #606266;
   border-radius: 15px;
 }
+
 .date {
   font-size: 24px;
   font-weight: 600;
 }
+
 .weektext {
   margin-top: 5px;
   font-size: 14px;
 }
 
 .myrecord {
-  height: 70vh;
   margin-top: 10px;
   padding-top: 5px;
   background-color: #FFFFFF;
   text-align: center;
   border: none;
 }
+
 .title {
   font-weight: 600 !important;
 }
 
 .record {
   margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 10px 15px 10px 15px;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  padding: 10px 15px 15px 15px;
   text-align: justify;
   background-color: #f7f7f7;
   border-radius: 20px;
+  position: relative;
 }
+
 .record:first-child {
   margin-top: 20px;
 }
+
 .titleline {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
 .lineheight {
   height: 30px;
   line-height: 30px;
 }
+
 .booktitle {
-  font-size: 17px;
+  width: 430rpx;
   color: #303133;
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
 .clocktime {
-  display: block;
   position: absolute;
-  right: 30px;
+  right: 15px;
+  font-size: 14px;
   color: #909399;
 }
+
+.clocktimedown {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  font-size: 14px;
+  color: #909399;
+}
+
 .recordpages {
   margin-top: 5px;
   color: #606266;
+  font-size: 15px;
 }
+
 .recordnote {
   margin-top: 10px;
   color: #606266;
+  font-size: 15px;
 }
-
 
 .norecord {
-  width: 60%;
-  margin-top: 20%;
+  margin-top: 20% !important;
 }
+
 .norecordtext {
   margin-top: -15rpx;
   color: #C0C4CC;
   font-size: 15px;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* DarkMode 下的样式 start */
-  page {
-    background-color: #000000;
-  }
-  .navbar {
-    color: #ffffff !important;
-    background-color: #000000 !important;
-  }
-  .navtitle {
-    color: #ffffff !important;
-  }
-  /* DarkMode 下的样式 end */
+.today {
+  width: 315rpx !important;
+  height: 60px !important;
+  margin-left: 40rpx;
+  margin-right: 20rpx !important;
 }
+
+.export {
+  width: 670rpx !important;
+  height: 60px !important;
+  margin-top: 15px !important;
+  border-radius: 20px !important;
+  color: #71BEAE !important;
+  font-weight: 600 !important;
+}
+
+.datetodate {
+  margin: 10px 10px;
+  text-align: center;
+  color: #303133;
+}
+
+.buttons {
+  padding: 30rpx 40rpx 40rpx 40rpx;
+  display: flex;
+  justify-content: space-around;
+  color: #303133;
+}
+
+.buttongrid {
+  text-align: center;
+}
+
+.mybutton {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.mybutton::after {
+  border: none;
+}
+
+.buttonimg {
+  width: 45px;
+  border-radius: 50%;
+}
+
+.buttoninfo {
+  font-size: 14px;
+  color: #303133;
+}
+
+.cell {
+  height: 60px !important;
+  /* font-weight: 600 !important; */
+  display: flex !important;
+  align-items: center !important;
+}
+
+.blank {
+  height: 80px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* @media (prefers-color-scheme: dark) {
+
+  page {
+    background-color: #010101;
+  }
+
+  .navbarline {
+    color: #ffffff !important;
+    background-color: #010101 !important;
+  }
+
+  .navbartitle {
+    color: #ffffff !important;
+  }
+
+  .mycalendar {
+    background-color: #1c1c1d;
+  }
+
+  .insidegrid {
+    background-color: #010101;
+    color: #ffffff;
+  }
+
+  .select {
+    background-color: #71BEAE;
+  }
+
+  .myrecord {
+    background-color: #010101;
+  }
+
+  .title {
+    background-color: #010101 !important;
+  }
+
+  .export {
+    background-color: #1c1c1d !important;
+    border-color: #1c1c1d !important;
+  }
+
+  .van-dialog {
+    background-color: #010101 !important;
+  }
+
+} */

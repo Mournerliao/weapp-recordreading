@@ -30,7 +30,8 @@
               <view class="bookauthor">{{item.author}}</view>
               <view wx:if="{{item.rating==='0.0'}}" class="bookrating">暂无评分</view>
               <view wx:else>
-                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ screenWidth*20 }}" color="#ffd21e" void-color="#f0f1f5" void-icon="star" readonly="true" />
+                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ 20 }}" color="#ffd21e"
+                  void-color="#f0f1f5" void-icon="star" readonly="true" />
               </view>
             </view>
           </view>
@@ -43,7 +44,8 @@
               <view class="bookauthor">{{item.author}}</view>
               <view wx:if="{{item.rating==='0.0'}}" class="bookrating">暂无评分</view>
               <view wx:else>
-                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ screenWidth*20 }}" color="#ffd21e" void-color="#f0f1f5" void-icon="star" readonly="true" />
+                <van-rate custom-class="bookrating" value="{{ item.rating }}" size="{{ screenWidth*20 }}"
+                  color="#ffd21e" void-color="#f0f1f5" void-icon="star" readonly="true" />
               </view>
             </view>
           </view>

@@ -1,65 +1,57 @@
 <view class="userinfo">
-  <van-row wx:if="{{ !hasUserInfo }}" bindtap="toLogin">
+  <van-row wx:if="{{ !hasUserInfo }}" bindtap="login">
     <van-col span="16">
       <view class="userinfo-nickname">未登录用户</view>
       <view class="userinfo-id">点我登录</view>
     </van-col>
     <van-col span="8">
-      <image class="userinfo-avatar" src="../../../static/img/avataaars.png" mode="cover"></image>
+      <van-image custom-class="userinfo-avatar" width="65" src="../../../../static/img/noavatar.png" fit="widthFix"
+        round />
     </van-col>
   </van-row>
 
   <van-row wx:else>
     <van-col span="16">
       <view class="userinfo-nickname">{{ name }}</view>
+      <!-- <open-data class="userinfo-nickname" type="userNickName"></open-data> -->
       <view class="userinfo-id">ID：{{ userID }}</view>
     </van-col>
     <van-col span="8">
-      <image class="userinfo-avatar" src="{{ imgUrl }}" mode="cover"></image>
+      <van-image custom-class="userinfo-avatar" width="65" src="{{ imgUrl }}" fit="widthFix" round />
+      <!-- <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data> -->
     </van-col>
   </van-row>
 </view>
 
 <view class="buttons">
-  <button class="mybutton" bindtap="toCollect"><van-icon name="star" /></button>
-  <button class="mybutton" open-type="share"><van-icon name="share" /></button>
-  <button class="mybutton" bindtap="toMore"><van-icon name="weapp-nav" /></button>
+  <button class="mybutton" bindtap="toCollect">
+    <van-icon name="star" />
+  </button>
+  <button class="mybutton" open-type="share">
+    <van-icon name="share" />
+  </button>
+  <button class="mybutton" bindtap="toMore">
+    <van-icon name="weapp-nav" />
+  </button>
 </view>
 
-<!-- <view class="userinfo">
-  <van-row wx:if="{{ !hasUserInfo }}" bindtap="toLogin">
-    <van-col span="16">
-      <view class="userinfo-nickname">未登录用户</view>
-      <view class="userinfo-read">点我登录</view>
-    </van-col>
-    <van-col span="8">
-      <image class="userinfo-avatar" src="../../../static/img/avataaars.png" mode="cover"></image>
-    </van-col>
-  </van-row>
-
-  <van-row wx:else bindtap="toMore">
-    <van-col span="16">
-      <view class="userinfo-nickname">{{ name }}</view>
-      <view class="userinfo-read">已经阅读了 0 本图书</view>
-    </van-col>
-    <van-col span="8">
-      <image class="userinfo-avatar" src="{{ imgUrl }}" mode="cover"></image>
-    </van-col>
-  </van-row>
-</view> -->
-
-<!-- <view class="collect">
-  <view class="collectbackground">
-    <van-cell-group border="{{false}}">
-      <van-cell custom-class="collectitem" title-class="collectitem-title" title="我的收藏" size="large" border="{{false}}" link-type="navigateTo" url="/pages/collection/collection">
-        <van-icon slot="right-icon" name="star" color="#FFFFFF" size="18px" />
-      </van-cell>
-    </van-cell-group>
+<view wx:if="{{ifCompletion && hasUserInfo}}" class="haveread">
+  <view class="completions">🎉 读完啦</view>
+  <view wx:for="{{books}}" wx:key="index">
+    <view class="book">
+      <van-image width="200rpx" src="{{item.cover_url}}" radius="10" fit="widthFix" />
+      <view class="bookinfo">
+        <view class="booktitle">{{item.title}}</view>
+        <view class="bookdays">阅读时长：{{item.days}}天</view>
+        <view class="bookendtime">完成时间：{{item.endTime}}</view>
+      </view>
+    </view>
   </view>
-</view> -->
+</view>
 
-<view class="haveread">
-  <view class="havereadtitle">已阅读的书籍</view>
-  <image class="nobook" src="../../../static/img/haveread.png" mode="widthFix" />
+<view wx:else class="haveread">
+  <view class="completions">🎉 读完啦</view>
+  <!-- <image class="nobook" src="../../../static/img/haveread.png" mode="widthFix" /> -->
+  <van-image custom-class="nobook" width="60%" src="../../../../static/img/haveread.png" fit="widthFix" />
   <view class="nobooktext">暂无书籍，加油呀!</view>
 </view>

@@ -1,6 +1,8 @@
 <view class="navbarline" style="padding-top: {{navHeight+10}}px;">
-  <view class="navbartitle">{{monthText[month-1]}}，{{year}}</view>
+  <view class="navbartitle" bindtap="today">{{monthText[month-1]}}，{{year}}</view>
 </view>
+
+<wxs src="mySubstring.wxs" module="tool"></wxs>
 
 <view class="mycalendar">
   <!--显示当前年月日-->
@@ -23,41 +25,86 @@
   </scroll-view>
 </view>
 
-<view class="myrecord">
-  <wxs src="mySubstring.wxs" module="tool"></wxs>
-  <van-tabs tab-class="title" active="current" color="#71BEAE"
-    title-active-color="#71BEAE" bind:click="getAllRecords">
-    <van-tab title="当日记录" name="current">
-      <view wx:if="{{!ifCurrentRecord}}">
-        <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
-        <view class="norecordtext">暂无记录</view>
-      </view>
-      <view wx:else>
-        <view wx:for="{{currentRecords}}" wx:key="index" class="record">
-          <view class="titleline">
-            <text class="lineheight booktitle">{{item.title}}</text>
-            <text class="lineheight clocktime">{{tool.mySubstring(item.date,11)}}</text>
-          </view>
-          <view class="recordpages">阅读页数：{{item.readPages}}</view>
-          <view class="recordnote">{{item.note}}</view>
+<view wx:if="{{ !loading }}">
+  <view class="myrecord">
+    <van-tabs tab-class="title" active="current" color="#71BEAE" title-active-color="#71BEAE" bind:click="getAllRecords"
+      line-width="0">
+      <van-tab title="当日记录" name="current">
+        <van-button custom-class="export" color="#f7f7f7" bind:click="toExport">导出或分享记录</van-button>
+
+        <view wx:if="{{!ifCurrentRecord || !hasUserInfo}}">
+          <van-image custom-class="norecord" width="50%" src="../../../../static/img/addnotes.png" fit="widthFix" />
+          <view class="norecordtext">暂无记录</view>
         </view>
-      </view>
-    </van-tab>
-    <van-tab title="全部记录" name="all">
-      <view wx:if="{{!ifAllRecord}}">
-        <image class="norecord" src="../../../static/img/addnotes.png" mode="widthFix" />
-        <view class="norecordtext">暂无记录</view>
-      </view>
-      <view wx:else>
-        <view wx:for="{{allRecords}}" wx:key="index" class="record">
-          <view class="titleline">
-            <text class="lineheight booktitle">{{item.title}}</text>
-            <text class="lineheight clocktime">{{tool.mySubstring(item.date,11)}}</text>
+        <view wx:else>
+          <view wx:for="{{currentRecords}}" wx:key="index" class="record">
+            <view class="titleline">
+              <text class="lineheight booktitle">{{item.title}}</text>
+              <text class="lineheight clocktime">{{tool.myTimeSubstring(item.date,11)}}</text>
+            </view>
+            <view class="recordpages">阅读页数：{{item.readPages}}</view>
+            <view wx:if="{{item.excerpt.length != 0}}" class="recordnote">句段摘抄：{{item.excerpt}}</view>
+            <view wx:if="{{item.note.length != 0}}" class="recordnote">阅读笔记：{{item.note}}</view>
           </view>
-          <view class="recordpages">阅读页数：{{item.readPages}}</view>
-          <view class="recordnote">{{item.note}}</view>
         </view>
+      </van-tab>
+      <van-tab title="全部记录" name="all">
+        <van-button custom-class="export" color="#f7f7f7" bind:click="toExport">导出或分享记录</van-button>
+        <view wx:if="{{!ifAllRecord}}">
+          <van-image custom-class="norecord" width="50%" src="../../../../static/img/addnotes.png" fit="widthFix" />
+          <view class="norecordtext">暂无记录</view>
+        </view>
+        <view wx:else>
+          <view wx:for="{{allRecords}}" wx:key="index" class="record">
+            <view class="titleline">
+              <text class="lineheight booktitle">{{item.title}}</text>
+              <text class="lineheight clocktime">{{tool.myDaySubstring(item.date,10)}}</text>
+              <text class="lineheight clocktime clocktimedown">{{tool.myTimeSubstring(item.date,11)}}</text>
+            </view>
+            <view class="recordpages">阅读页数：{{item.readPages}}</view>
+            <view wx:if="{{item.excerpt.length != 0}}" class="recordnote">句段摘抄：{{item.excerpt}}</view>
+            <view wx:if="{{item.note.length != 0}}" class="recordnote">阅读笔记：{{item.note}}</view>
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
+
+  <van-dialog use-slot title="选择日期区间" show="{{ dialogShow }}" show-confirm-button="{{false}}"
+    show-cancel-button="{{false}}" bind:close="onClose" closeOnClickOverlay="true">
+    <van-datetime-picker type="date" value="{{ currentDate }}" formatter="{{ formatter }}" show-toolbar="{{false}}"
+      bind:input="selectStartDate" visible-item-count="3" />
+    <view class="datetodate">至</view>
+    <van-datetime-picker type="date" value="{{ currentDate }}" formatter="{{ formatter }}" show-toolbar="{{false}}"
+      bind:input="selectEndDate" visible-item-count="3" />
+    <view class="buttons">
+      <view class="buttongrid">
+        <button class="mybutton" bindtap="showSelectSort">
+          <image class="buttonimg" src="https://www.xiaoqw.online/recordreading/source/pdf.png" mode="widthFix"></image>
+        </button>
+        <view class="buttoninfo">导出pdf</view>
       </view>
-    </van-tab>
-  </van-tabs>
+      <view class="buttongrid">
+        <button class="mybutton" bindtap="onCreatePoster">
+          <image class="buttonimg" src="https://www.xiaoqw.online/recordreading/source/save.png" mode="widthFix">
+          </image>
+        </button>
+        <view class="buttoninfo">生成海报</view>
+      </view>
+    </view>
+  </van-dialog>
+
+  <van-dialog use-slot title="选择记录展示方式" show="{{ sortShow }}" bind:close="closeSelectSort"
+    show-confirm-button="{{false}}" show-cancel-button="{{false}}" close-on-click-overlay>
+    <van-cell-group border="{{false}}">
+      <van-cell custom-class="cell" title="按时间顺序排序" is-link clickable bind:click="exportPDFByTime" border="{{false}}">
+      </van-cell>
+      <van-cell custom-class="cell" title="按书籍名称排序" is-link clickable bind:click="exportPDFByName" border="{{false}}">
+      </van-cell>
+    </van-cell-group>
+  </van-dialog>
+
+  <poster id="poster" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
+
+  <view class="blank"></view>
 </view>

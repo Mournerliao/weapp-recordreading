@@ -1,12 +1,16 @@
 {
   "usingComponents": {
     "van-loading": "@vant/weapp/loading/index",
-    "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index",
     "van-circle": "@vant/weapp/circle/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-progress": "@vant/weapp/progress/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-image": "@vant/weapp/image/index"
   },
   "navigationStyle": "custom"
 }

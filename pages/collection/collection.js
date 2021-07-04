@@ -17,7 +17,7 @@ Page({
   getCollection() {
     let that = this;
     wx.request({
-      url: 'https://www.xiaoqw.online/recordreading/sever/getCollection.php',
+      url: 'https://www.xiaoqw.online/recordreading/sever/getCollections.php',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -27,6 +27,7 @@ Page({
       },
       success: res => {
         console.log(res.data);
+        res.data.reverse();
         that.setData({
           books: res.data,
           loading: false

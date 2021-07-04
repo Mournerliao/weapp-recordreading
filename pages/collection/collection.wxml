@@ -8,27 +8,22 @@
 </view>
 
 <view class="nullcollection" wx:if="{{books.length === 0}}">
-  <image class="nullpic" src="../../static/img/collection.png"></image>
+  <image class="nullpic" src="../../static/img/collection.png" mode="widthFix"></image>
   <view class="nulltext">暂无收藏</view>
 </view>
 
 <view wx:else>
   <view wx:for="{{books}}" wx:key="index">
     <view class="book" data-isbn="{{item.isbn}}" bindtap="toBookInfo">
-      <van-row>
-        <van-col span="10">
-          <image class="bookcover" src="{{item.cover_url}}" mode="heightFix"></image>
-        </van-col>
-
-        <van-col span="8">
-          <view class="bookright">
-            <view class="booktitle">{{item.title}}</view>
-            <van-tag custom-class="bookpages" plain color="#ffd21e" size="medium">页数：{{ item.pages }}</van-tag>
-            <view class="bookauthor">{{item.author}}</view>
-          </view>
-        </van-col>
-      </van-row>
-      <text class="bookrating">{{item.rating}}</text>
+      <image class="bookcover" src="{{item.cover_url}}" mode="widthFix"></image>
+      <view class="bookinfo">
+        <view class="booktitle">{{item.title}}</view>
+        <van-tag custom-class="bookpages" plain color="#ffd21e" size="medium">页数：{{ item.pages }}</van-tag>
+        <view class="bookauthor">{{item.author}}</view>
+      </view>
+      <view class="bookrating">{{item.rating}}</view>
     </view>
   </view>
 </view>
+
+<view class="blank"></view>

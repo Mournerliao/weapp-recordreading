@@ -12,9 +12,12 @@
 
 <view>
   <van-cell-group custom-class="cellgroup" border="{{false}}">
-    <van-cell custom-class="cell topradius" title="绑定邮箱" size="large" is-link bind:click="toBindEmail" border="{{false}}" center />
-    <van-cell custom-class="cell" title="反馈与建议" size="large" is-link open-tpye="contact" bind:click="showPopup1" border="{{false}}" center />
-    <van-cell custom-class="cell bottomradius" title="退出登录" size="large" is-link bind:click="showPopup2" border="{{false}}" center />
+    <van-cell custom-class="cell topradius" title="结束当前阅读" size="large" is-link bind:click="showPopup1" border="{{false}}" center />
+    <van-cell custom-class="cell" title="暂停挑战" size="large" is-link bind:click="showPopup2" border="{{false}}" center />
+    <van-cell custom-class="cell" title="绑定邮箱" size="large" is-link bind:click="showPopup3" border="{{false}}" center />
+    <van-cell custom-class="cell" title="更新用户信息" size="large" is-link bind:click="showPopup4" border="{{false}}" center />
+    <van-cell custom-class="cell" title="反馈与建议" size="large" is-link open-tpye="contact" bind:click="showPopup5" border="{{false}}" center />
+    <van-cell custom-class="cell bottomradius" title="退出登录" size="large" is-link bind:click="showPopup6" border="{{false}}" center />
   </van-cell-group>
 
   <van-popup
@@ -26,8 +29,8 @@
     bind:close="onClose1"
   >
     <view class="popup">
-      <text class="popuptitle">即将前往客服页面</text>
-      <van-button custom-class="confirm" color="#71BEAE" round open-type="contact" block>确定</van-button>
+      <text class="popuptitle">确定结束当前阅读？</text>
+      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="endReading">确定</van-button>
       <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose1">取消</van-button>
     </view>
   </van-popup>
@@ -41,9 +44,70 @@
     bind:close="onClose2"
   >
     <view class="popup">
-      <text class="popuptitle">是否退出登录？</text>
-      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="quit">确定</van-button>
+      <text class="popuptitle">确定暂停挑战？</text>
+      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="endPk">确定</van-button>
       <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose2">取消</van-button>
+    </view>
+  </van-popup>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show3 }}"
+    round
+    position="bottom"
+    custom-style="height: 330px"
+    bind:close="onClose3"
+  >
+    <view class="popup">
+      <text class="popuptitle">请输入您的邮箱</text>
+      <input class="email" value="{{ email }}" confirm-type="next" bindblur="myEmail" />
+      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="setEmail">确定</van-button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose3">取消</van-button>
+    </view>
+  </van-popup>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show4 }}"
+    round
+    position="bottom"
+    custom-style="height: 250px"
+    bind:close="onClose4"
+  >
+    <view class="popup">
+      <text class="popuptitle">确定更新您的信息？</text>
+      <button class="confirm update" bindtap="getUserProfile">确定</button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose4">取消</van-button>
+    </view>
+  </van-popup>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show5 }}"
+    round
+    position="bottom"
+    custom-style="height: 250px"
+    bind:close="onClose5"
+  >
+    <view class="popup">
+      <text class="popuptitle">即将前往客服页面</text>
+      <van-button custom-class="confirm" color="#71BEAE" round open-type="contact" block>确定</van-button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose5">取消</van-button>
+    </view>
+  </van-popup>
+
+  <van-popup
+    custom-class="vanpopup"
+    show="{{ show6 }}"
+    round
+    position="bottom"
+    custom-style="height: 250px"
+    bind:close="onClose6"
+  >
+    <view class="popup">
+      <text class="popuptitle">确定退出登录？</text>
+      <van-button custom-class="confirm" color="#71BEAE" round block bind:click="quit">确定</van-button>
+      <van-button custom-class="cancel" color="#C0C4CC" round block bind:click="onClose6">取消</van-button>
     </view>
   </van-popup>
 
